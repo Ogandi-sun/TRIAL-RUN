@@ -1,0 +1,172 @@
+/* =====================================================================
+   JOB PATH – main stylesheet
+   Loaded AFTER Bootstrap so these rules can override it.
+   Sections: 1 Theme  2 Base  3 Header  4 Hero  5 Sections  6 Cards
+             7 Jobs page  8 Forms  9 Footer  10 Utilities  11 Responsive
+   ===================================================================== */
+
+/* ---------- 1. THEME (colours + font taken from the logo) ---------- */
+:root {
+  --jp-indigo: #4f46e5;
+  --jp-blue:   #2563eb;
+  --jp-cyan:   #06b6d4;
+  --jp-navy:   #0f172a;
+  --jp-slate:  #64748b;
+  --jp-gold:   #ffb627;
+  --jp-bg:     #f8fafc;
+  --jp-border: #e2e8f0;
+  --jp-radius: 1rem;
+  --jp-shadow: 0 10px 30px rgba(15, 23, 42, .08);
+
+  /* Re-point Bootstrap's own variables at our palette */
+  --bs-primary: var(--jp-indigo);
+  --bs-primary-rgb: 79, 70, 229;
+  --bs-link-color: var(--jp-indigo);
+  --bs-link-hover-color: #4338ca;
+  --bs-body-font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --bs-body-color: var(--jp-navy);
+  --bs-body-bg: #ffffff;
+}
+
+/* ---------- 2. BASE ---------- */
+html { scroll-behavior: smooth; }
+body { font-family: var(--bs-body-font-family); background: #fff; }
+h1, h2, h3, h4, h5 { font-weight: 700; letter-spacing: -.01em; }
+.text-gradient {
+  background: linear-gradient(90deg, var(--jp-indigo), var(--jp-cyan));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.skip-link {            /* keyboard users can jump past the menu */
+  position: absolute; left: -999px; top: 0; z-index: 2000;
+  background: var(--jp-navy); color: #fff; padding: .5rem 1rem;
+}
+.skip-link:focus { left: 0; }
+:focus-visible { outline: 3px solid var(--jp-cyan); outline-offset: 2px; }
+
+/* ---------- 3. HEADER ---------- */
+.jp-navbar {
+  background: rgba(255, 255, 255, .92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--jp-border);
+}
+.brand-logo { height: 46px; width: auto; }
+.jp-navbar .nav-link { color: var(--jp-navy); font-weight: 500; position: relative; }
+.jp-navbar .nav-link:hover { color: var(--jp-indigo); }
+.jp-navbar .nav-link.active { color: var(--jp-indigo); }
+.jp-navbar .nav-link.active::after {   /* little underline on current page */
+  content: ""; position: absolute; left: .5rem; right: .5rem; bottom: 2px;
+  height: 3px; border-radius: 3px;
+  background: linear-gradient(90deg, var(--jp-indigo), var(--jp-cyan));
+}
+
+/* ---------- 4. HERO ---------- */
+.hero {
+  color: #fff;
+  background: linear-gradient(135deg, var(--jp-navy) 0%, var(--jp-indigo) 55%, var(--jp-cyan) 100%);
+  padding-bottom: 5rem;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);   /* slanted bottom edge */
+}
+.hero h1 { color: #fff; }
+.hero-tagline { color: var(--jp-gold); font-weight: 500; }
+.hero-art {                       /* decorative road + pin echoing the logo */
+  max-width: 340px; width: 100%; filter: drop-shadow(0 20px 30px rgba(0,0,0,.25));
+}
+.page-hero {                      /* smaller hero for inner pages */
+  color: #fff; text-align: center; padding: 4rem 0 5rem;
+  background: linear-gradient(135deg, var(--jp-navy) 0%, var(--jp-indigo) 60%, var(--jp-cyan) 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+}
+.page-hero h1 { color: #fff; }
+.page-hero p  { color: rgba(255,255,255,.85); max-width: 40rem; margin-inline: auto; }
+
+/* ---------- 5. SECTIONS ---------- */
+.section { padding: 4.5rem 0; }
+.section-alt { background: var(--jp-bg); }
+.section-title { text-align: center; margin-bottom: .5rem; }
+.section-intro { text-align: center; color: var(--jp-slate); max-width: 36rem; margin: 0 auto 2.5rem; }
+
+.cta-band {
+  background: linear-gradient(135deg, var(--jp-indigo), var(--jp-cyan));
+  color: #fff; border-radius: 1.5rem; padding: 3rem 1.5rem; text-align: center;
+}
+.cta-band h2 { color: #fff; }
+
+/* ---------- 6. CARDS / ICONS / STEPS ---------- */
+.icon-wrap {
+  width: 64px; height: 64px; border-radius: 1.1rem; display: grid; place-items: center;
+  font-size: 1.8rem; color: #fff;
+  background: linear-gradient(135deg, var(--jp-indigo), var(--jp-cyan));
+}
+.step-badge {
+  position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+  width: 40px; height: 40px; display: grid; place-items: center; font-weight: 700;
+  background: var(--jp-gold); color: var(--jp-navy); border: 4px solid #fff; border-radius: 50%;
+}
+.path-row { position: relative; }
+@media (min-width: 768px) {       /* dashed "road" linking the steps */
+  .path-row::before {
+    content: ""; position: absolute; top: 0; left: 16%; right: 16%;
+    border-top: 4px dashed var(--jp-indigo); opacity: .3;
+  }
+}
+.about-list li { margin-bottom: .6rem; }
+
+/* ---------- 7. JOBS PAGE ---------- */
+.job-card .card-title { font-size: 1.1rem; }
+.job-card .list-group-item { border: 0; padding-left: 0; font-size: .92rem; color: var(--jp-slate); }
+.save-btn {
+  border: 0; background: transparent; color: var(--jp-slate); font-size: 1.2rem; line-height: 1;
+}
+.save-btn:hover { color: var(--jp-indigo); }
+.save-btn.saved { color: var(--jp-gold); }
+#filterPills .nav-link { color: var(--jp-navy); border: 1px solid var(--jp-border); background: #fff; }
+#filterPills .nav-link.active {
+  color: #fff; border-color: transparent;
+  background: linear-gradient(135deg, var(--jp-indigo), var(--jp-cyan));
+}
+.accordion-button:not(.collapsed) { color: var(--jp-indigo); background: rgba(79,70,229,.08); }
+
+/* ---------- 8. FORMS ---------- */
+.auth-wrap { min-height: 60vh; display: grid; place-items: center; padding: 3rem 1rem 4rem; background: var(--jp-bg); }
+.auth-card {
+  width: 100%; max-width: 520px; background: #fff; border-radius: 1.25rem;
+  padding: 2rem; box-shadow: var(--jp-shadow); border: 1px solid var(--jp-border);
+}
+.auth-card h1 { font-size: 1.7rem; }
+.password-toggle {
+  position: absolute; right: .6rem; top: 50%; transform: translateY(-50%);
+  border: 0; background: transparent; color: var(--jp-slate); padding: .25rem .5rem;
+}
+.form-text { color: var(--jp-slate); }
+
+/* ---------- 9. FOOTER ---------- */
+.jp-footer { background: var(--jp-navy); color: rgba(255,255,255,.8); padding: 3rem 0 1.5rem; }
+.jp-footer h6 { color: #fff; font-weight: 600; margin-bottom: 1rem; }
+.jp-footer a { color: rgba(255,255,255,.75); text-decoration: none; }
+.jp-footer a:hover { color: var(--jp-gold); }
+.footer-logo { height: 40px; width: auto; background: #fff; border-radius: .6rem; padding: .25rem .6rem; }
+.footer-social a { font-size: 1.25rem; margin-right: .9rem; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.12); margin-top: 2rem; padding-top: 1.25rem; font-size: .9rem; }
+
+.back-to-top {
+  position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 1030;
+  width: 44px; height: 44px; border-radius: 50%; border: 0; color: #fff;
+  background: linear-gradient(135deg, var(--jp-indigo), var(--jp-cyan));
+  box-shadow: var(--jp-shadow); opacity: 0; pointer-events: none; transition: opacity .25s;
+}
+.back-to-top.show { opacity: 1; pointer-events: auto; }
+
+/* ---------- 10. UTILITIES ---------- */
+.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.js .reveal.in-view { opacity: 1; transform: none; }
+
+/* ---------- 11. RESPONSIVE + ACCESSIBILITY ---------- */
+@media (max-width: 575.98px) {
+  .section { padding: 3rem 0; }
+  .brand-logo { height: 38px; }
+  .auth-card { padding: 1.5rem 1.1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+}

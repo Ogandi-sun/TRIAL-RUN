@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Log in to your JOB PATH account.">
+  <title>Log in | JOB PATH</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/uiverse.css">
+</head>
+<body data-page="login">
+
+  <div id="site-header"></div>
+
+  <main id="main" class="auth-wrap">
+    <div class="auth-card">
+      <h1 class="mb-1">Welcome back</h1>
+      <p class="text-secondary mb-4">Log in to continue your job search.</p>
+
+      <form class="needs-validation" novalidate data-success="Logged in (demo – no server connected yet)." data-redirect="jobs.html">
+        <div class="uv-field">
+          <input type="email" id="lEmail" placeholder=" " autocomplete="email" required>
+          <label for="lEmail">Email address</label>
+          <span class="invalid-msg">Please enter a valid email.</span>
+        </div>
+        <div class="uv-field">
+          <input type="password" id="lPassword" placeholder=" " autocomplete="current-password" required>
+          <label for="lPassword">Password</label>
+          <button type="button" class="password-toggle" data-target="#lPassword" aria-label="Show password"><i class="bi bi-eye"></i></button>
+          <span class="invalid-msg">Please enter your password.</span>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <label class="uv-check small"><input type="checkbox"><span></span>Remember me</label>
+          <a href="contact.html" class="small">Forgot password?</a>
+        </div>
+        <button type="submit" class="uv-btn uv-btn-block">Log in</button>
+      </form>
+
+      <p class="text-center small mt-4 mb-0">New here? <a href="register.html">Register as a Job Seeker</a> or <a href="register-employer.html">as an Employer</a></p>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
