@@ -1,0 +1,132 @@
+/* =====================================================================
+   UIVERSE-STYLE COMPONENTS  (https://uiverse.io)
+   Uiverse is a community gallery of copy-and-paste HTML/CSS elements –
+   it is NOT an installable library. You browse the site, click an
+   element, copy its HTML + CSS and paste it into your project.
+   The components below follow that same pattern (pure CSS, no JS) and
+   are namespaced with "uv-" so they never clash with Bootstrap.
+   To add another one from uiverse.io: paste its CSS at the bottom of
+   this file and its HTML where you want it. Rename its classes with
+   the "uv-" prefix to keep things tidy.
+   ===================================================================== */
+
+/* ---------- Button: gradient with a shine sweep ---------- */
+.uv-btn {
+  position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  padding: .75rem 1.75rem; border: 0; border-radius: 999px; cursor: pointer;
+  font: 600 1rem/1 "Poppins", sans-serif; color: #fff; text-decoration: none;
+  background: linear-gradient(135deg, var(--jp-indigo), var(--jp-cyan));
+  box-shadow: 0 8px 20px rgba(79, 70, 229, .3);
+  transition: transform .2s, box-shadow .2s;
+}
+.uv-btn::before {                        /* the shiny strip */
+  content: ""; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.45), transparent);
+  transition: left .6s;
+}
+.uv-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(79, 70, 229, .4); color: #fff; }
+.uv-btn:hover::before { left: 140%; }
+.uv-btn:active { transform: translateY(0) scale(.98); }
+.uv-btn-gold { background: var(--jp-gold); color: var(--jp-navy); box-shadow: 0 8px 20px rgba(255,182,39,.35); }
+.uv-btn-gold:hover { color: var(--jp-navy); box-shadow: 0 12px 26px rgba(255,182,39,.5); }
+.uv-btn-block { width: 100%; }
+
+/* ---------- Button: outline that fills on hover ---------- */
+.uv-btn-outline {
+  position: relative; z-index: 0; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  padding: .7rem 1.6rem; border-radius: 999px; cursor: pointer; text-decoration: none;
+  font: 600 1rem/1 "Poppins", sans-serif; color: var(--jp-indigo);
+  background: transparent; border: 2px solid var(--jp-indigo); transition: color .3s;
+}
+.uv-btn-outline::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--jp-indigo);
+  transform: scaleX(0); transform-origin: left; transition: transform .3s;
+}
+.uv-btn-outline:hover { color: #fff; }
+.uv-btn-outline:hover::before { transform: scaleX(1); }
+.uv-btn-outline.light { color: #fff; border-color: #fff; }
+.uv-btn-outline.light::before { background: #fff; }
+.uv-btn-outline.light:hover { color: var(--jp-navy); }
+
+/* ---------- Input: floating label with animated underline ----------
+   HTML:  <div class="uv-field"><input id="x" placeholder=" " required>
+          <label for="x">Label</label></div>                            */
+.uv-field { position: relative; margin-bottom: 1.25rem; }
+.uv-field input, .uv-field select, .uv-field textarea {
+  width: 100%; padding: 1.35rem .9rem .5rem; font: 400 1rem "Poppins", sans-serif; color: var(--jp-navy);
+  background: #f1f5f9; border: 2px solid transparent; border-radius: .75rem; outline: none;
+  transition: border-color .25s, background .25s, box-shadow .25s;
+}
+.uv-field textarea { resize: vertical; min-height: 130px; }
+.uv-field label {
+  position: absolute; left: .95rem; top: .95rem; color: var(--jp-slate); pointer-events: none;
+  transition: all .2s ease; transform-origin: left top;
+}
+.uv-field input:focus, .uv-field select:focus, .uv-field textarea:focus {
+  background: #fff; border-color: var(--jp-indigo); box-shadow: 0 0 0 4px rgba(79,70,229,.12);
+}
+/* label floats up when focused OR when the field has content */
+.uv-field input:focus + label,
+.uv-field input:not(:placeholder-shown) + label,
+.uv-field textarea:focus + label,
+.uv-field textarea:not(:placeholder-shown) + label,
+.uv-field select + label {
+  top: .35rem; font-size: .72rem; color: var(--jp-indigo); font-weight: 600;
+}
+.uv-field select { padding-top: 1.45rem; }
+.uv-field input:focus + label,
+.uv-field textarea:focus + label {
+  color: var(--jp-indigo);
+}
+/* validation colours (Bootstrap adds .was-validated to the form) */
+.was-validated .uv-field input:invalid,
+.was-validated .uv-field select:invalid,
+.was-validated .uv-field textarea:invalid { border-color: #dc3545; background: #fff5f5; }
+.was-validated .uv-field input:valid,
+.was-validated .uv-field textarea:valid { border-color: #22c55e; }
+.uv-field .invalid-msg { display: none; color: #dc3545; font-size: .8rem; margin-top: .25rem; }
+.was-validated .uv-field input:invalid ~ .invalid-msg,
+.was-validated .uv-field select:invalid ~ .invalid-msg,
+.was-validated .uv-field textarea:invalid ~ .invalid-msg { display: block; }
+
+/* ---------- Card: lift + gradient glow border on hover ---------- */
+.uv-card {
+  position: relative; height: 100%; background: #fff; border-radius: var(--jp-radius); padding: 1.5rem;
+  border: 1px solid var(--jp-border); box-shadow: var(--jp-shadow);
+  transition: transform .25s, box-shadow .25s;
+}
+.uv-card::after {                         /* glowing border, hidden until hover */
+  content: ""; position: absolute; inset: -2px; z-index: -1; border-radius: calc(var(--jp-radius) + 2px);
+  background: linear-gradient(135deg, var(--jp-indigo), var(--jp-cyan), var(--jp-gold));
+  opacity: 0; transition: opacity .25s;
+}
+.uv-card:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(15,23,42,.14); }
+.uv-card:hover::after { opacity: 1; }
+
+/* ---------- Checkbox: animated tick ----------
+   HTML: <label class="uv-check"><input type="checkbox"><span></span> Text</label> */
+.uv-check { display: inline-flex; align-items: center; gap: .6rem; cursor: pointer; user-select: none; }
+.uv-check input { position: absolute; opacity: 0; }
+.uv-check span {
+  position: relative; width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--jp-slate);
+  transition: background .2s, border-color .2s; flex: none;
+}
+.uv-check span::after {
+  content: ""; position: absolute; left: 6px; top: 1px; width: 6px; height: 12px;
+  border: solid #fff; border-width: 0 3px 3px 0; transform: rotate(45deg) scale(0); transition: transform .2s;
+}
+.uv-check input:checked + span { background: var(--jp-indigo); border-color: var(--jp-indigo); }
+.uv-check input:checked + span::after { transform: rotate(45deg) scale(1); }
+.uv-check input:focus-visible + span { outline: 3px solid var(--jp-cyan); outline-offset: 2px; }
+
+/* ---------- Loader: three bouncing dots ----------
+   HTML: <div class="uv-loader"><i></i><i></i><i></i></div> */
+.uv-loader { display: inline-flex; gap: .4rem; }
+.uv-loader i { width: 12px; height: 12px; border-radius: 50%; background: var(--jp-indigo); animation: uv-bounce 1s infinite ease-in-out; }
+.uv-loader i:nth-child(2) { background: var(--jp-cyan); animation-delay: .15s; }
+.uv-loader i:nth-child(3) { background: var(--jp-gold); animation-delay: .3s; }
+@keyframes uv-bounce { 0%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-14px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .uv-btn, .uv-btn::before, .uv-card, .uv-loader i { transition: none; animation: none; }
+}
